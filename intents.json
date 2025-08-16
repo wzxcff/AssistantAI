@@ -1,0 +1,24 @@
+{
+  "intents": [
+    {
+      "tag": "reminder",
+      "patterns": ["Remind me about", "Set reminder", "Remind", "I want you to remind me about", "Notify me", "Remember that"],
+      "responses": ["reminder"]
+    },
+    {
+      "tag": "weather",
+      "patterns": ["What's the weather", "Tell me about weather right now", "Weather", "Weather rn", "Whats the weather rn", "What weather outside", "Is it rainy outside?", "is it sunny outside?", "is it cold outside?", "is it hot outside?", "What should I wear?", "Tell me about the weather", "Fetch function weather"],
+      "responses": ["weather"]
+    },
+    {
+      "tag": "math",
+      "patterns": ["How much is", "Calculate", "Help me with math", "Math", "Solve this", "Solve"],
+      "responses": ["math"]
+    },
+    {
+      "tag": "joke",
+      "patterns": ["Tell me a joke", "Say something funny", "I'm sad", "Joke", "Joke around a little bit"],
+      "responses": ["Here's your joke 1", "Joke 2", "Hahaha Joke 3", "Joke 4???"]
+    }
+  ]
+}
