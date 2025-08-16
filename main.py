@@ -9,6 +9,7 @@ import numpy as np
 import torch
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
+from logic import *
 
 
 class Model(nn.Module):
@@ -32,7 +33,7 @@ class Model(nn.Module):
 
 
 class Assistant:
-    def __init__(self, intents_path):
+    def __init__(self, intents_path, functions_mapping=None):
         self.vocab = []
         self.intents = []
         self.intents_responses = {}
@@ -42,7 +43,7 @@ class Assistant:
         self.X = None
         self.y = None
 
-        self.function_mappings = {}
+        self.function_mappings = functions_mapping
 
     def tokenize_and_lemmatize(self, text):
         lemmatizer = WordNetLemmatizer()
@@ -150,15 +151,22 @@ class Assistant:
 
 
 if __name__ == '__main__':
-    # assistant = Assistant("intents.json")
-    # assistant.parse_intents()
-    # assistant.prepare_data()
-    # assistant.train_model(batch_size=8, lr=0.001, epochs=100)
-    # assistant.save_model(model_path="assistant_model.pth", dimensions_path="dimensions.json")
 
-    assistant = Assistant("intents.json")
-    assistant.parse_intents()
-    assistant.load_model("assistant_model.pth", "dimensions.json")
+    training_mode = True
+    function_mapping = {"weather": weather, "reminder": reminder, "math": math}
+
+    if training_mode:
+        print("Training mode activated")
+        assistant = Assistant("intents.json", function_mapping)
+        assistant.parse_intents()
+        assistant.prepare_data()
+        assistant.train_model(batch_size=8, lr=0.001, epochs=100)
+        assistant.save_model(model_path="assistant_model.pth", dimensions_path="dimensions.json")
+    else:
+        print("Loading model")
+        assistant = Assistant("intents.json", function_mapping)
+        assistant.parse_intents()
+        assistant.load_model("assistant_model.pth", "dimensions.json")
 
     while True:
         message = input("> ")
