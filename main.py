@@ -152,7 +152,7 @@ class Assistant:
 
 if __name__ == '__main__':
 
-    training_mode = True
+    training_mode = False
     function_mapping = {"weather": weather, "reminder": reminder, "math": math}
 
     if training_mode:
